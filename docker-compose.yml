@@ -1,0 +1,25 @@
+reaction:
+  image: reactioncommerce/reaction
+  links:
+    - mongo
+  ports:
+    - "80:99"
+  environment:
+    ROOT_URL: "http://localhost"
+    MONGO_URL: "mongodb://mongo:27017/meteor"
+    REACTION_EMAIL: "jonid.bendo@gmail.com"
+    REACTION_USER: "admin"
+    REACTION_AUTH: "password"
+
+mongo:
+  image: mongo:latest
+  ports:
+    - "27017:27017"
+  command: mongod --storageEngine=wiredTiger
+
+mongo-express:
+  image: mongo-express:latest
+  ports:
+    - "8081:8081"
+  links:
+    - mongo
